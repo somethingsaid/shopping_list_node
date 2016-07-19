@@ -15,11 +15,15 @@ Storage.prototype.add = function(name) {
 };
 
 Storage.prototype.delete = function(itemId) {
-    if(itemId) {
-        var i = this.items.map(function(x) { return x.id }).indexOf(itemId);
-        this.items.splice(i, 1);
-        return {status: 200, data: this.items};
-    }
+    for (var i=0; i<this.items.length; i++) {
+        console.log(this.items[i]);
+        if (this.items[i].id == itemId) {
+            console.log('Index is: ', i);
+            this.items.splice(i, 1);
+            return {status: 200, data: this.items};
+        }
+    };
+    
     return {status: 204, data: this.items};
 };
 
